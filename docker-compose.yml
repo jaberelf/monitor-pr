@@ -4,12 +4,12 @@ networks:
   monitor-net:
     driver: bridge
 
+
 volumes:
-    prometheus_data: {}
-    grafana_data: {}
+  prometheus_data: {}
+  grafana_data: {}
 
 services:
-
   prometheus:
     image: prom/prometheus:v2.2.0-rc.0
     container_name: prometheus
