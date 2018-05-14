@@ -142,6 +142,8 @@ services:
   jupyter-notebook:
     image: jupyter/datascience-notebook
     container_name: jupyter_notebook
+    volumes:
+      - /home/jaber/jupyter notebook/work:/home/jaber/work
     networks:
       - monitor-net
     restart: unless-stopped
