@@ -72,5 +72,36 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
-
+      
+  portainer:
+    image: portainer/portainer
+    container_name: portainer-app
+    command: --templates http://templates/templates.json 
+    networks:
+      - monitor-net
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/portainer/data:/data
   
+  jupyter-notebook:
+    image: jupyter/datascience-notebook
+    container_name: jupyter_notebook
+    networks:
+      - monitor-net
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+  
+  postgres-pgadmin:
+    image: wnameless/postgresql-phppgadmin
+    container_name: postgres-pgadmin
+    restart: unless-stopped
+    networks:
+      - monitor-net
+    ports:
+      - "49060:22"
+      - "49061:80"
+      - "49062:5432"
