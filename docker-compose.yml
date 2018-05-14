@@ -94,6 +94,8 @@ services:
     restart: unless-stopped
     ports:
       - "8888:8888"
+    labels:
+      org.label-schema.group: "monitoring"
   
   postgres-pgadmin:
     image: wnameless/postgresql-phppgadmin
@@ -105,3 +107,5 @@ services:
       - "49060:22"
       - "49061:80"
       - "49062:5432"
+    labels:
+      org.label-schema.group: "monitoring"
