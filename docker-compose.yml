@@ -6,8 +6,8 @@ networks:
 
 
 volumes:
-    prometheus_data: {}
-    grafana_data: {}
+    prometheus_volume: {}
+    grafana_volume: {}
 
 services:
   prometheus:
@@ -15,7 +15,7 @@ services:
     container_name: prometheus
     volumes:
       - ./prometheus/:/etc/prometheus/
-      - prometheus_data:/prometheus
+      - prometheus_volume:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -60,7 +60,7 @@ services:
     image: grafana/grafana:4.6.3
     container_name: grafana
     volumes:
-      - grafana_data:/var/lib/grafana
+      - grafana_volume:/var/lib/grafana
       - ./grafana/datasources:/etc/grafana/datasources
       - ./grafana/dashboards:/etc/grafana/dashboards
       - ./grafana/setup.sh:/setup.sh
