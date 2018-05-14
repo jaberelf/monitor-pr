@@ -1,7 +1,7 @@
 {
   "id": null,
-  "title": "Server",
-  "description": "Server metrics",
+  "title": "Docker Host",
+  "description": "Docker host metrics",
   "tags": [
     "system"
   ],
