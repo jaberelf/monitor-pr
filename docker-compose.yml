@@ -6,8 +6,8 @@ networks:
 
 
 volumes:
-  prometheus_data: {}
-  grafana_data: {}
+    prometheus_data: {}
+    grafana_data: {}
 
 services:
   prometheus:
