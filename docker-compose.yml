@@ -68,6 +68,7 @@ services:
     labels:
       org.label-schema.group: "monitoring"
       
+  
   postgresql-exporter:
     image: wrouesnel/postgres_exporter:v0.4.1
     container_name: postgresexporter
@@ -80,7 +81,7 @@ services:
     networks:
       - monitor-net
     environment:
-      - DATA_SOURCE_NAME="postgresql://postgres:postgres@172.18.1.10:5432/?sslmode=disable"
+      - DATA_SOURCE_NAME=postgresql://postgres:postgres@172.18.1.10:5432/?sslmode=disable
     volumes:
       - ./queries/queries.yml:/queries.yaml
 
