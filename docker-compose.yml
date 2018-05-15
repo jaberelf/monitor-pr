@@ -167,7 +167,7 @@ services:
     restart: unless-stopped
     networks:
       - monitor-net:
-          ipv4_address: 172.18.1.10
+          ipv4_address: "172.18.1.10"
     ports:
       - "49060:22"
       - "49061:80"
