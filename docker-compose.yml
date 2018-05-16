@@ -1,7 +1,7 @@
 version: '2.1'
 
 networks:
-  monitor-net:
+  monitor-net1:
     driver: bridge
 
 volumes:
