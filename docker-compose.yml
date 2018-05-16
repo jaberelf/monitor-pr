@@ -10,6 +10,33 @@ volumes:
 
 services:
 
+  portainer:
+    image: portainer/portainer
+    container_name: portainer-app
+    command: --templates http://templates/templates.json 
+    networks:
+      - monitor-net
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/portainer/data:/data
+
+  postgres-pgadmin:
+    image: wnameless/postgresql-phppgadmin
+    container_name: postgres-pgadmin
+    restart: unless-stopped
+    networks:
+      monitor-net:
+        ipv4_address: "172.18.0.10"
+    ports:
+      - "49060:22"
+      - "49061:80"
+      - "49062:5432"
+    labels:
+      org.label-schema.group: "monitoring"
+
   prometheus:
     image: prom/prometheus:v2.2.0-rc.0
     container_name: prometheus
@@ -124,6 +151,21 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
+  
+
+  jupyter-notebook:
+    image: jupyter/datascience-notebook
+    container_name: jupyter_notebook
+    volumes:
+      - /home/jaber/jupyter notebook/work:/home/jovyan/work
+    networks:
+      - monitor-net
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    labels:
+      org.label-schema.group: "monitoring"
+  
   #caddy:
    # image: stefanprodan/caddy
    # container_name: caddy
@@ -143,43 +185,4 @@ services:
      # org.label-schema.group: "monitoring"
 
 
-
-  portainer:
-    image: portainer/portainer
-    container_name: portainer-app
-    command: --templates http://templates/templates.json 
-    networks:
-      - monitor-net
-    restart: unless-stopped
-    ports:
-      - 9000:9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /opt/portainer/data:/data
   
-  jupyter-notebook:
-    image: jupyter/datascience-notebook
-    container_name: jupyter_notebook
-    volumes:
-      - /home/jaber/jupyter notebook/work:/home/jovyan/work
-    networks:
-      - monitor-net
-    restart: unless-stopped
-    ports:
-      - "8888:8888"
-    labels:
-      org.label-schema.group: "monitoring"
-  
-  postgres-pgadmin:
-    image: wnameless/postgresql-phppgadmin
-    container_name: postgres-pgadmin
-    restart: unless-stopped
-    networks:
-      monitor-net:
-        ipv4_address: "172.18.0.10"
-    ports:
-      - "49060:22"
-      - "49061:80"
-      - "49062:5432"
-    labels:
-      org.label-schema.group: "monitoring"
