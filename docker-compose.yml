@@ -62,6 +62,7 @@ services:
     container_name: postgresexporter
     command:
       - '-extend.query-path=/queries.yaml'
+    restart: unless-stopped
     networks:
       monitor-net1:
         ipv4_address: "172.20.0.5"
