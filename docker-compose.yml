@@ -29,7 +29,7 @@ services:
     ports:
       - 9090:9090
     networks:
-      - monitor-net
+      - monitor-net1
     labels:
       org.label-schema.group: "monitoring"
   
@@ -52,7 +52,7 @@ services:
     ports:
       - "9100:9100"
     networks:
-      - monitor-net
+      - monitor-net1
     labels:
       org.label-schema.group: "monitoring"
       
@@ -63,7 +63,7 @@ services:
     command:
       - '-extend.query-path=/queries.yaml'
     networks:
-      monitor-net:
+      monitor-net1:
         ipv4_address: "172.18.0.9"
     ports:
       - 9187:9187
@@ -91,7 +91,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - monitor-net
+      - monitor-net1
     labels:
       org.label-schema.group: "monitoring"
 
