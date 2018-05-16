@@ -95,7 +95,7 @@ services:
       monitor-net:
         ipv4_address: "172.18.0.13"
     environment:
-      - DATA_SOURCE_NAME="postgresql://postgres:postgres@172.18.1.10:5432/postgres"
+      - DATA_SOURCE_NAME="postgresql://postgres:postgres@172.18.1.10:5432/postgres?sslmode=disable"
     volumes:
       - ./queries/queries.yml:/queries.yaml
 
