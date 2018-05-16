@@ -62,8 +62,6 @@ services:
     container_name: postgresexporter
     ports:
       - "9187:9187"
-    depends_on:
-      - postgres-pgadmin
     command:
       - '-extend.query-path=/queries.yaml'
     networks:
