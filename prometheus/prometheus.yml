@@ -23,7 +23,7 @@ scrape_configs:
       - targets: ['localhost:9090']
       
   - job_name: 'postgresexporter'
-    scrape_interval: 5s
+    scrape_interval: 10s
     static_configs:
       - targets: ['172.17.0.2:9187']
 
