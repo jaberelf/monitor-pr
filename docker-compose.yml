@@ -60,13 +60,13 @@ services:
   postgresql-exporter:
     image: wrouesnel/postgres_exporter:v0.4.1
     container_name: postgresexporter
-    ports:
-      - "9187:9187"
     command:
       - '-extend.query-path=/queries.yaml'
     networks:
       monitor-net:
-        ipv4_address: "172.18.0.13"
+        ipv4_address: "172.18.0.9"
+    ports:
+      - "9187:9187"
     environment:
       - DATA_SOURCE_NAME="postgresql://postgres:postgres@172.18.1.10:5432/postgres?sslmode=disable"
     volumes:
