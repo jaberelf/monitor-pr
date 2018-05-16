@@ -58,21 +58,7 @@ services:
     labels:
       org.label-schema.group: "monitoring"
   
-  #alertmanager:
-   # image: prom/alertmanager:v0.14.0
-    #container_name: alertmanager
-    #volumes: 
-     # - ./alertmanager/:/etc/alertmanager/
-    #command:
-     # - '--config.file=/etc/alertmanager/config.yml'
-     # - '--storage.path=/alertmanager'
-    #restart: unless-stopped
-    #ports:
-     # - "9093:9093"
-    #networks:
-     # - monitor-net
-    #labels:
-     # org.label-schema.group: "monitoring"
+ 
 
   nodeexporter:
     image: prom/node-exporter:v0.15.2
@@ -109,26 +95,11 @@ services:
       monitor-net:
         ipv4_address: "172.18.0.13"
     environment:
-      - DATA_SOURCE_NAME=postgresql://postgres:postgres@172.18.1.10:5432/?sslmode=disable
+      - DATA_SOURCE_NAME="postgresql://postgres:postgres@172.18.1.10:5432/postgres"
     volumes:
       - ./queries/queries.yml:/queries.yaml
 
-  #cadvisor:
-    #image: google/cadvisor:v0.28.3
-    #container_name: cadvisor
-    #volumes:
-     # - /:/rootfs:ro
-      #- /var/run:/var/run:rw
-      #- /sys:/sys:ro
-      #- /var/lib/docker/:/var/lib/docker:ro
-      #- /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
-    #restart: unless-stopped
-    #ports:
-     # - 8080:8080
-    #networks:
-     # - monitor-net
-    #labels:
-     # org.label-schema.group: "monitoring"
+ 
   
   grafana:
     image: grafana/grafana:4.6.3
@@ -166,23 +137,7 @@ services:
     labels:
       org.label-schema.group: "monitoring"
   
-  #caddy:
-   # image: stefanprodan/caddy
-   # container_name: caddy
-   # ports:
-    #  - "3000:3000"
-     # - "9090:9090"
-     # - "9093:9093"
-    #volumes:
-      #- ./caddy/:/etc/caddy/
-    #environment:
-     # - ADMIN_USER=${ADMIN_USER:-admin}
-     # - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
-    #restart: unless-stopped
-    #networks:
-     # - monitor-net
-    #labels:
-     # org.label-schema.group: "monitoring"
+  
 
 
   
