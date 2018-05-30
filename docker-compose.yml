@@ -64,8 +64,7 @@ services:
       - '-extend.query-path=/queries.yaml'
     restart: unless-stopped
     networks:
-      monitor-net1:
-        ipv4_address: "172.20.0.5"
+      - monitor-net1:
     ports:
       - 9187:9187
     environment:
