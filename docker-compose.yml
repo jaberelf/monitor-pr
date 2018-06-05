@@ -73,6 +73,7 @@ services:
       - ./queries/queries.yml:/queries.yaml
     labels:
       org.label-schema.group: "monitoring"
+   
 
  
   
@@ -96,7 +97,23 @@ services:
       - monitor-net1
     labels:
       org.label-schema.group: "monitoring"
-
+ 
+  cadvisor:
+    image: google/cadvisor:v0.28.3
+    container_name: cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /cgroup:/cgroup:ro 
+    restart: unless-stopped
+    ports:
+      - "8080":"8080
+    networks:
+      - monitor-net1
+    labels:
+      org.label-schema.group: "monitoring"
   
 
  
